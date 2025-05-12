@@ -4,9 +4,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 import utils.BaseTest;
+
+import java.time.Duration;
 
 public class RegisterPage  {
 
@@ -25,7 +29,7 @@ public class RegisterPage  {
     By userNameField = By.cssSelector("#form > div > div > div:nth-child(3) > div > form > input[type=text]:nth-child(2)");
     By emailAddressField = By.cssSelector("#form > div > div > div:nth-child(3) > div > form > input[type=email]:nth-child(3)");
 
-    By signUpButton = By.cssSelector("#form > div > div > div:nth-child(3) > div > form > button");
+    By signupBtn = By.xpath("//button[@data-qa=\"signup-button\"]");
     By enterAccountInformation = By.cssSelector("#form > div > div > div > div.login-form > h2 > b");
 
 
@@ -60,6 +64,9 @@ public class RegisterPage  {
 
     By alreadyExistedUser = By.cssSelector("#form > div > div > div:nth-child(3) > div > form > p");
 
+    By verifyAccountCreated = By.cssSelector("#form > div > div > div > h2 > b");
+
+    By continueButtin = By.cssSelector("#form > div > div > div > div > a");
 
     public void HomeCheck() {
         System.out.println(driver.findElement(homeCheck).isDisplayed());
@@ -84,7 +91,12 @@ public class RegisterPage  {
     }
 
     public void setSignUpButton() {
-        driver.findElement(signUpButton).click();
+//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+//        WebElement element = wait.until(
+//                ExpectedConditions.elementToBeClickable(signupBtn));
+//        element.click();
+
+        driver.findElement(signupBtn).click();
     }
 
     public void setEnterAccountInformation() {
@@ -173,5 +185,15 @@ public class RegisterPage  {
 
     public void registerWithExistedUser(){
         driver.findElement(alreadyExistedUser).isDisplayed();
+    }
+
+    public void verifyAccountCreatedFun(){
+        System.out.println(driver.findElement(verifyAccountCreated).isDisplayed());
+    }
+
+    public void clickOnContinueButton(){
+        WebElement textField = driver.findElement(continueButtin);
+        String value2 = textField.getAttribute("href");
+        driver.navigate().to(value2);
     }
 }

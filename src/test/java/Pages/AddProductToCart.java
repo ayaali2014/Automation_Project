@@ -23,10 +23,10 @@ public class AddProductToCart {
     By selectFirstProduct = By.xpath("/html/body/section[2]/div/div/div[2]/div/div[2]/div/div[1]/div[1]/img");
     By selectSecondProduct = By.xpath("/html/body/section[2]/div/div/div[2]/div/div[3]/div/div[1]/div[1]/img");
 
-    By hoverOnFirstProduct = By.cssSelector("body > section:nth-child(3) > div > div > div.col-sm-9.padding-right > div > div:nth-child(3) > div > div.single-products > div.product-overlay > div > a");
-    By hoverOnSecondProduct = By.cssSelector("body > section:nth-child(3) > div > div > div.col-sm-9.padding-right > div > div:nth-child(4) > div > div.single-products > div.product-overlay > div > a");
+    By hoverOnFirstProduct = By.xpath("/html/body/section[2]/div/div/div[2]/div/div[2]/div/div[1]/div[2]/div");
+    By hoverOnSecondProduct = By.xpath("/html/body/section[2]/div/div/div[2]/div/div[3]/div/div[1]/div[2]/div");
 
-    By continoueShopping = By.cssSelector("#cartModal > div > div > div.modal-footer > button");
+    By continoueShopping = By.xpath("/html/body/section[2]/div/div/div[2]/div/div[1]/div/div/div[3]/button");
 
     By viewCartLink = By.cssSelector("#cartModal > div > div > div.modal-body > p:nth-child(2) > a");
 
@@ -55,13 +55,16 @@ public class AddProductToCart {
         WebElement elementToHover = driver.findElement(selectFirstProduct);
 
         // Find the element to click (can be the same or revealed after hover)
-        WebElement elementToClick = driver.findElement(hoverOnFirstProduct);
+        WebElement elementToClick = driver.findElement(By.xpath("/html/body/section[2]/div/div/div[2]/div/div[2]/div/div[1]/div[2]/div/a"));
 
         // Create Actions instance
         Actions actions = new Actions(driver);
 
         // Perform hover and click
         actions.moveToElement(elementToHover).perform();
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(20));
+        WebElement element = wait.until(
+                ExpectedConditions.elementToBeClickable(hoverOnFirstProduct));
         elementToClick.click();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }

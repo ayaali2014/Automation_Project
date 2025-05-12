@@ -74,7 +74,7 @@ public class ProductQuantityInCart {
         WebElement element = wait.until(
                 ExpectedConditions.visibilityOf(textField));
         driver.navigate().to(value2);
-        
+
 
     }
 

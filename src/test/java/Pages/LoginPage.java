@@ -29,6 +29,7 @@ public class LoginPage {
 
     By InvalidLoginMessage = By.cssSelector("#form > div > div > div.col-sm-4.col-sm-offset-1 > div > form > p");
 
+
     public void HomeCheck() {
         System.out.println(driver.findElement(homeCheck).isDisplayed());
     }
