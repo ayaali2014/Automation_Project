@@ -1,17 +1,16 @@
 pipeline {
-     agent any
+    agent any
     stages {
         stage('check') {
             steps {
-                echo "checking your code"   
+                echo "checking your code"
             }
         }
 
         stage('test') {
             steps {
-                echo "run unit test" 
+                echo "run unit test"
             }
-        }
-    }
-
+        }
+    }
 }
