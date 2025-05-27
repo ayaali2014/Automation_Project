@@ -1,0 +1,16 @@
+pipeline {
+     agent any
+    stages {
+        stage('check') {
+            steps {
+                echo "checking your code"   
+            }
+        }
+
+        stage('test') {
+            steps {
+                echo "run unit test" 
+            }
+        }
+    }
+
